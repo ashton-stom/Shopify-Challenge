@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import { isNamespaceExport } from 'typescript';
+import Header from './components/Header'
+import Card from './components/Card'
 
 function App() {
+  const [nasaPod, setNasaPod] = useState(null)
+  useEffect(() => {
+    fetch("https://api.nasa.gov/planetary/apod?api_key=0a28lLtadUnstI1idwH3Gttd1AF7Ta7CY62Az0f9")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setNasaPod(data)
+    });
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Card nasaPod = {nasaPod}/>
     </div>
   );
 }
