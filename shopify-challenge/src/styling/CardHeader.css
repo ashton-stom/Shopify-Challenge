@@ -1,0 +1,13 @@
+.cardHeader {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.6rem;
+}
+
+.cardHeader h2 {
+    font-weight: bold;
+}
+
+.cardHeader h3 span {
+    font-style: italic;
+}

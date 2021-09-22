@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { isNamespaceExportDeclaration } from 'typescript';
+import React from 'react';
+import '../styling/Card.css'
 import CardHeader from './CardHeader';
 import Image from './Image';
 import Info from './Info';
@@ -12,10 +12,10 @@ export default function Card(props: any) {
     const {nasaPod} = props
     return(
         <div className = 'card'>
-            {/* <CardHeader title={nasaPod.title} date={nasaPod.date}/> */}
+            <CardHeader title={nasaPod.title} date={nasaPod.date}/>
             <Image image={nasaPod.hdurl} />
             <Info info={nasaPod.explanation} />
-            <Like />
+            <Like id={nasaPod.date} />
         </div>
     )
 }

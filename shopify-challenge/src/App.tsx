@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
-import { isNamespaceExport } from 'typescript';
+import './App.css'
 import Header from './components/Header'
 import Card from './components/Card'
 
 function App() {
-  const [nasaPod, setNasaPod] = useState(null)
+  const [nasaPod, setNasaPod] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Fetching data from API
   useEffect(() => {
-    fetch("https://api.nasa.gov/planetary/apod?api_key=0a28lLtadUnstI1idwH3Gttd1AF7Ta7CY62Az0f9")
+    fetch("https://api.nasa.gov/planetary/apod?api_key=f9fHmaDFOH42fn7hAAhAv0RXIQ3deBI1U3lcnfst&start_date=2021-09-01&end_date=2021-09-21")
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       setNasaPod(data)
+      setLoading(false)
     });
-  })
+  }, [])
   return (
     <div className="App">
       <Header />
-      <Card nasaPod = {nasaPod}/>
+      {!loading ? nasaPod.map((p: any) => <Card nasaPod = {p} key={p.date}/>) : <h2 className='loading'>Loading...</h2>}
     </div>
   );
 }
