@@ -13,7 +13,7 @@ export default function Card(props: any) {
     return(
         <div className = 'card'>
             <CardHeader title={nasaPod.title} date={nasaPod.date}/>
-            <Image image={nasaPod.hdurl} />
+            <Image image={nasaPod.hdurl} name={nasaPod.title} />
             <Info info={nasaPod.explanation} />
             <Like id={nasaPod.date} />
         </div>
